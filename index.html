@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="styles.css" />
+  <title>VERBIFY App</title>
+  <style>
+    body { font-family: sans-serif; margin: 0; padding: 0; background: #fff2f2; color: #333; text-align: center; }
+    header { background: #bbd3fa; color: white; padding: 5px 10px 5px 10px; }
+    .container {
+  padding: 5px 10px 30px 20px; /* верх меньше, бока стандартно, низ чуть больше */
+  max-width: 800px;
+  margin: auto;
+}
+    .btn { display: inline-block; margin-top: 20px; padding: 15px 25px; background-color: #007BFF; color: white; text-decoration: none; font-size: 18px; border-radius: 5px; }
+    select { margin: 20px; font-size: 16px; padding: 5px; }
+    .lang-content { display: none; text-align: left; direction: ltr; }
+    .rtl { direction: rtl; text-align: right; }
+    .visible { display: block; }
+  </style>
+</head>
+<body>
+    <header>
+        <div style="display: flex; align-items: center; justify-content: center; flex-wrap: wrap; padding: 5px;">
+          <img src="VERBIFY.png" alt="VERBIFY Logo" style="height: 70px; margin-right: 15px;" />
+          <div style="display: flex; flex-direction: column; align-items: center; flex: 1;">
+            <h1 style="color: #262d3a; font-size: 32px; margin: 0; text-align: center;">VERBIFY App</h1>
+            <p style="font-size: 1em; color: #333; text-align: center; margin: 0;">is your Hebrew Verb Trainer</p>
+          </div>
+        </div>
+      </header>
+ 
+  
+  <!-- Отдельно — изображение -->
+  <!-- Блок с изображением -->
+<!-- Блок с изображением с отступами -->
+<style>
+    .image-wrapper {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      /* background-color: #f4f4f4; */
+      background: linear-gradient(to right, #5de0e6, #004aad);
+      box-sizing: border-box;
+    }
+  
+    .image-wrapper img {
+      max-width: 100%;
+      padding-top: 20px;
+      height: auto;
+      display: block;
+    }
+  
+    @media (max-width: 600px) {
+      .image-wrapper {
+        padding-top: 20px;
+        padding-left: 20px;
+        justify-content: flex-start;
+      }
+    }
+
+    .language-selector {
+  position: absolute;
+  top: 80px;
+  right: 5px;
+  z-index: 3;
+  padding: 6px 12px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+  cursor: pointer;
+}
+  </style>
+  
+  <div class="image-wrapper">
+    <img src="hand.png" alt="Verbify" />
+    <select id="languageSelector" class="language-selector">
+      <option value="en">English</option>
+      <option value="ru">Русский</option>
+      <option value="fr">Français</option>
+      <option value="es">Español</option>
+      <option value="pt">Português</option>
+      <option value="ar">العربية</option>
+      <option value="am">አማርኛ</option>
+      <option value="he">עברית</option>
+    </select>
+  </div>
+  
+  
+<!--   
+    </div> -->
+      
+    <div class="highlight">
+        <div id="hl-en" class="highlight-lang visible">The educational app for mastering the Hebrew verb system</div>
+        <div id="hl-ru" class="highlight-lang">Образовательное приложение для изучения системы глаголов иврита</div>
+        <div id="hl-fr" class="highlight-lang">Une application éducative pour apprendre le système verbal de l’hébreu</div>
+        <div id="hl-es" class="highlight-lang">Una aplicación educativa para aprender el sistema verbal del hebreo</div>
+        <div id="hl-pt" class="highlight-lang">Um aplicativo educativo para aprender o sistema verbal do hebraico</div>
+        <div id="hl-ar" class="highlight-lang">تطبيق تعليمي لتعلم نظام الأفعال العبرية</div>
+        <div id="hl-am" class="highlight-lang">የዕብራይስጥ ግሶችን ለመማር የትምህርት መተግበሪያ</div>
+        <div id="hl-he" class="highlight-lang">אפליקציה חינוכית ללימוד מערכת הפעלים בעברית</div>
+      </div>
+
+      <div class="description-container">
+      <div class="description-block">
+        <div id="desc-ru" class="desc-lang">
+          Это эффективный тренажер и инструмент для тех, кто уже изучает иврит, обладает базовыми знаниями, хочет научиться быстро и правильно спрягать глаголы или совершенствовать этот навык. Приложение также полезно начинающим, так как включает упражнения для запоминания глаголов, их форм, биньянов и тренировки использования повелительного наклонения (императивов).
+        </div>
+        <div id="desc-en" class="desc-lang visible">This is an effective trainer and tool for those already studying Hebrew, who have basic knowledge and want to learn how to conjugate verbs quickly and correctly or improve this skill. The app is also helpful for beginners, as it includes exercises for memorizing verbs, their forms, binyanim, and practicing the imperative mood.</div>
+        <div id="desc-fr" class="desc-lang">C’est un outil et un entraîneur efficace pour ceux qui apprennent déjà l’hébreu, possèdent des connaissances de base et souhaitent apprendre à conjuguer rapidement et correctement les verbes ou perfectionner cette compétence. L’application est également utile aux débutants, car elle propose des exercices pour mémoriser les verbes, leurs formes, les binyanim et l’utilisation de l’impératif.</div>
+        <div id="desc-es" class="desc-lang">Es un entrenador y herramienta eficaz para quienes ya están estudiando hebreo, tienen conocimientos básicos y desean aprender a conjugar verbos rápida y correctamente o mejorar esta habilidad. La aplicación también es útil para principiantes, ya que incluye ejercicios para memorizar verbos, sus formas, los binyanim y practicar el modo imperativo.</div>
+        <div id="desc-pt" class="desc-lang">É um treinador e ferramenta eficaz para quem já está aprendendo hebraico, possui conhecimentos básicos e deseja aprender a conjugar verbos de forma rápida e correta ou aprimorar essa habilidade. O aplicativo também é útil para iniciantes, pois inclui exercícios para memorizar verbos, suas formas, os binyanim e treinar o uso do modo imperativo.</div>
+        <div id="desc-ar" class="desc-lang rtl">هذا مدرب وأداة فعالة لأولئك الذين يدرسون العبرية بالفعل، ولديهم معرفة أساسية، ويريدون تعلم تصريف الأفعال بسرعة وبدقة أو تحسين هذه المهارة. التطبيق مفيد أيضًا للمبتدئين، حيث يتضمن تمارين لحفظ الأفعال، وأشكالها، والبنيان، وتدريب على استخدام صيغة الأمر.</div>
+        <div id="desc-am" class="desc-lang">ይህ ትኩረት የሚሰጥ ማሰልጠኛ እና መሳሪያ ለአሁን አብሮ የሚማሩት የዕብራይስጥ ቋንቋ ተማሪዎች ሲሆን፣ መሰረታዊ እውቀት ያላቸው እና በፍጥነትና ትክክለኛ መንገድ ግሶችን ለመተግበር ወይም ይህንን ችሎታ ለማሻሻል የሚፈልጉ ናቸው። መተግበሪያው ለጀማሪዎችም ጠቃሚ ነው፣ ምክንያቱም የግሶችን ማስታወሻ፣ ቅርጸቶቻቸውን፣ ቢንያኒምን እና የትእዛዝ ቅርጽን እንዲያሟሉ ልምዶችን ይዟል።</div>
+        <div id="desc-he" class="desc-lang rtl">זוהי אפליקציה יעילה ואפקטיבית עבור מי שכבר לומד עברית, שיש לו ידע בסיסי ורוצה ללמוד להטות פעלים במהירות ובצורה נכונה, או לשפר את המיומנות הזו. האפליקציה גם מתאימה למתחילים, כי היא כוללת תרגילים לזיכרון של פעלים, הצורות שלהם, הבניינים, ואימונים על שימוש בצורת הציווי (אימפרטיב).</div>
+      </div>
+    </div>
+
+
+
+      <div class="features-text-container">
+        <div id="features-text-en" class="features-text-lang visible">
+          <div class="features-list">
+            <p class="feature-item">Suitable for beginners and intermediate learners</p>
+            <p class="feature-item">Includes 8 interactive exercises</p>
+            <p class="feature-item">AI assistant for grammar, translation, conjugation</p>
+            <p class="feature-item">Tracks name, progress, and statistics</p>
+            <p class="feature-item">Simple and intuitive interface</p>
+            <p class="feature-item">Supports 7 languages</p>
+            <p class="feature-item">Works offline (except chatbot)</p>
+            <p class="feature-item">All infinitives, conjugations and imperatives with audio</p>
+            <p class="feature-item">Daily practice reminders</p>
+            <p class="feature-item">Easy way to share your progress</p>
+          </div>
+        </div>
+      
+        <div id="features-text-ru" class="features-text-lang">
+          <div class="features-list">
+            <p class="feature-item">Подходит для начинающих и продолжающих</p>
+            <p class="feature-item">Содержит 8 интерактивных упражнений</p>
+            <p class="feature-item">Интегрированный ИИ-чатбот для помощи, объяснений, перевода и спряжения</p>
+            <p class="feature-item">Сохраняет имя, прогресс и статистику</p>
+            <p class="feature-item">Простой и интуитивный интерфейс</p>
+            <p class="feature-item">Поддержка 7 языков</p>
+            <p class="feature-item">Работает офлайн (кроме чатбота)</p>
+            <p class="feature-item">Озвучены все инфинитивы, спряжения и повелительные формы</p>
+            <p class="feature-item">Ежедневные напоминания о практике</p>
+            <p class="feature-item">Удобный способ делиться достижениями</p>
+          </div>
+        </div>
+      
+        <div id="features-text-fr" class="features-text-lang">
+          <div class="features-list">
+            <p class="feature-item">Convient aux débutants et aux apprenants intermédiaires</p>
+            <p class="feature-item">Comprend 8 exercices interactifs</p>
+            <p class="feature-item">Chatbot IA intégré pour l’aide, les explications, les traductions et les conjugaisons</p>
+            <p class="feature-item">Enregistre le nom, les statistiques et la progression</p>
+            <p class="feature-item">Interface simple et intuitive</p>
+            <p class="feature-item">Prise en charge de 7 langues</p>
+            <p class="feature-item">Fonctionne hors ligne (sauf le chatbot)</p>
+            <p class="feature-item">Tous les infinitifs, conjugaisons et impératifs avec audio</p>
+            <p class="feature-item">Rappels quotidiens pour pratiquer</p>
+            <p class="feature-item">Partage facile de vos progrès</p>
+          </div>
+        </div>
+      
+        <div id="features-text-es" class="features-text-lang">
+          <div class="features-list">
+            <p class="feature-item">Apta para principiantes y estudiantes intermedios</p>
+            <p class="feature-item">Incluye 8 ejercicios interactivos</p>
+            <p class="feature-item">Chatbot con IA incorporado para ayuda, explicaciones, traducción y conjugación</p>
+            <p class="feature-item">Guarda tu nombre, estadísticas y progreso</p>
+            <p class="feature-item">Diseño simple e intuitivo</p>
+            <p class="feature-item">Soporte para 7 idiomas</p>
+            <p class="feature-item">Funciona sin conexión (excepto el chatbot)</p>
+            <p class="feature-item">Todos los infinitivos, conjugaciones e imperativos con audio</p>
+            <p class="feature-item">Recordatorios diarios para practicar</p>
+            <p class="feature-item">Fácil forma de compartir tus logros</p>
+          </div>
+        </div>
+      
+        <div id="features-text-pt" class="features-text-lang">
+          <div class="features-list">
+            <p class="feature-item">Indicado para iniciantes e aprendizes intermediários</p>
+            <p class="feature-item">Inclui 8 exercícios interativos</p>
+            <p class="feature-item">Chatbot com IA integrado para ajuda, explicações, tradução e conjugação</p>
+            <p class="feature-item">Armazena nome, estatísticas e progresso</p>
+            <p class="feature-item">Design simples e intuitivo</p>
+            <p class="feature-item">Suporte para 7 idiomas</p>
+            <p class="feature-item">Funciona offline (exceto o chatbot)</p>
+            <p class="feature-item">Todos os infinitivos, conjugações e imperativos com áudio</p>
+            <p class="feature-item">Lembretes diários de prática</p>
+            <p class="feature-item">Forma fácil de compartilhar suas conquistas</p>
+          </div>
+        </div>
+      
+        <div id="features-text-ar" class="features-text-lang rtl">
+          <div class="features-list">
+            <p class="feature-item">مناسب للمبتدئين والمتعلمين المتوسطين</p>
+            <p class="feature-item">يحتوي على 8 تمارين تفاعلية</p>
+            <p class="feature-item">روبوت دردشة ذكي مدمج للمساعدة، الشرح، الترجمة والتصريف</p>
+            <p class="feature-item">يحفظ اسم المستخدم، التقدم والإحصائيات</p>
+            <p class="feature-item">تصميم بسيط وسهل الاستخدام</p>
+            <p class="feature-item">دعم لـ 7 لغات</p>
+            <p class="feature-item">يعمل بدون إنترنت (باستثناء روبوت الدردشة)</p>
+            <p class="feature-item">جميع الأفعال المصدرية والتصريفات والأوامر بصوت</p>
+            <p class="feature-item">تذكيرات يومية للممارسة</p>
+            <p class="feature-item">طريقة سهلة لمشاركة إنجازاتك</p>
+          </div>
+        </div>
+      
+        <div id="features-text-am" class="features-text-lang">
+          <div class="features-list">
+            <p class="feature-item">ለጀማሪዎችና ለአካባቢ ተማሪዎች ተስማሚ</p>
+            <p class="feature-item">8 ተዋዋይ ልምድ ማተሚያዎችን ይዟል</p>
+            <p class="feature-item">የአይኤ ቻትቦት ለእርዳታ፣ ለመረጃ፣ ለትርጉምና ለግስ መለያየት</p>
+            <p class="feature-item">ስም፣ ግምገማ እና የመማሪያ እድገትን ይቀመጣል</p>
+            <p class="feature-item">ቀላልና አስተዋይ ንድፍ</p>
+            <p class="feature-item">7 ቋንቋዎችን ይደግፋል</p>
+            <p class="feature-item">ኦፍላይን ይሰራል (ከቻትቦት በስተቀር)</p>
+            <p class="feature-item">ሁሉም ግሶች ከድምፅ ጋር ናቸው</p>
+            <p class="feature-item">ዕለታዊ የልምድ አስታዋሽዎች</p>
+            <p class="feature-item">ማሳያዎችን በቀላሉ ማጋራት</p>
+          </div>
+        </div>
+      
+        <div id="features-text-he" class="features-text-lang rtl">
+          <div class="features-list">
+            <p class="feature-item">מתאימה למתחילים ולמתקדמים</p>
+            <p class="feature-item">כוללת 8 תרגולים אינטראקטיביים</p>
+            <p class="feature-item">צ'אטבוט בינה מלאכותית להדרכה, הסברים, תרגום והטיות</p>
+            <p class="feature-item">שומרת שם משתמש, סטטיסטיקה והתקדמות</p>
+            <p class="feature-item">ממשק פשוט ואינטואיטיבי</p>
+            <p class="feature-item">תמיכה ב־7 שפות</p>
+            <p class="feature-item">פועלת גם ללא חיבור לרשת (למעט הצ'אטבוט)</p>
+            <p class="feature-item">כל הפעלים, ההטיות והציווי כוללים שמע</p>
+            <p class="feature-item">תזכורות לתרגול יומי</p>
+            <p class="feature-item">שיתוף הישגים בקלות</p>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="screenshot-carousel">
+        <div class="carousel-track">
+          <div class="screenshot-slide">
+            <img src="Screenshot02.jpg" alt="Screenshot 1" />
+          </div>
+          <div class="screenshot-slide">
+            <img src="Screenshot01.jpg" alt="Screenshot 2" />
+          </div>
+        </div>
+        <div class="carousel-dots">
+          <span class="dot active" onclick="goToSlide(0)"></span>
+          <span class="dot" onclick="goToSlide(1)"></span>
+        </div>
+      </div>
+      
+      
+
+      <div class="description-container">
+        <div class="description-block">
+          <div id="levels-en" class="desc-lang visible">
+            <p>Main exercises — conjugation trainers for over 100 verbs</p>
+            <p>For beginners: exercises to memorize 300 common verbs</p>
+            <p>For intermediate: trainers for recognizing binyanim and imperatives</p>
+          </div>
+          <div id="levels-ru" class="desc-lang">
+            <p>Основные упражнения — тренажёры спряжения более 100 глаголов</p>
+            <p>Для начинающих: упражнения на запоминание 300 часто используемых глаголов</p>
+            <p>Для продолжающих: тренажёры распознавания биньянов и повелительных форм</p>
+          </div>
+          <div id="levels-fr" class="desc-lang">
+            <p>Exercices principaux — conjugaison de plus de 100 verbes</p>
+            <p>Pour débutants : mémorisation de 300 verbes courants</p>
+            <p>Pour intermédiaires : entraînement aux binyanim et à l’impératif</p>
+          </div>
+          <div id="levels-es" class="desc-lang">
+            <p>Ejercicios principales — conjugación de más de 100 verbos</p>
+            <p>Para principiantes: ejercicios para memorizar 300 verbos comunes</p>
+            <p>Para intermedios: práctica de binyanim y formas imperativas</p>
+          </div>
+          <div id="levels-pt" class="desc-lang">
+            <p>Exercícios principais — conjugação de mais de 100 verbos</p>
+            <p>Para iniciantes: memorização de 300 verbos comuns</p>
+            <p>Para intermediários: treino de binyanim e formas imperativas</p>
+          </div>
+          <div id="levels-ar" class="desc-lang">
+            <p>التمارين الرئيسية — تصريف أكثر من 100 فعل</p>
+            <p>للمبتدئين: تمارين لحفظ 300 فعل شائع</p>
+            <p>للمتوسطين: تدريب على البنيان وصيغة الأمر</p>
+          </div>
+          <div id="levels-am" class="desc-lang">
+            <p>ዋና ልምዶች — ከ100 በላይ ግሶችን ለመሰረዝ</p>
+            <p>ለጀማሪዎች፡ 300 የተለመዱ ግሶችን ማስታወሻ</p>
+            <p>ለመካከለኛዎች፡ ቢንያንን እና ትእዛዛትን ማወቅ</p>
+          </div>
+          <div id="levels-he" class="desc-lang">
+            <p>תרגולים עיקריים — תרגול הטיית יותר מ־100 פעלים</p>
+            <p>למתחילים: תרגילים לזכירת 300 פעלים שכיחים</p>
+            <p>למתקדמים: תרגול זיהוי בניינים וציווי</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="screenshot-carousel">
+        <div class="carousel-track">
+          <div class="screenshot-slide">
+            <img src="Screenshot03.jpg" alt="Screenshot 1" />
+          </div>
+          <div class="screenshot-slide">
+            <img src="Screenshot04.jpg" alt="Screenshot 2" />
+          </div>
+          <div class="screenshot-slide">
+            <img src="Screenshot05.jpg" alt="Screenshot 1" />
+          </div>
+          <div class="screenshot-slide">
+            <img src="Screenshot06.jpg" alt="Screenshot 2" />
+          </div>
+          <div class="screenshot-slide">
+            <img src="Screenshot07.jpg" alt="Screenshot 1" />
+          </div>
+          <div class="screenshot-slide">
+            <img src="Screenshot08.jpg" alt="Screenshot 2" />
+          </div>
+          <div class="screenshot-slide">
+            <img src="Screenshot09.jpg" alt="Screenshot 1" />
+          </div>
+          <div class="screenshot-slide">
+            <img src="Screenshot10.jpg" alt="Screenshot 2" />
+          </div>
+        </div>
+        <div class="carousel-dots">
+          <span class="dot active" onclick="goToSlide(0)"></span>
+          <span class="dot" onclick="goToSlide(1)"></span>
+          <span class="dot" onclick="goToSlide(2)"></span>
+          <span class="dot" onclick="goToSlide(3)"></span>
+          <span class="dot" onclick="goToSlide(4)"></span>
+          <span class="dot" onclick="goToSlide(5)"></span>
+          <span class="dot" onclick="goToSlide(6)"></span>
+          <span class="dot" onclick="goToSlide(7)"></span>
+        </div>
+      </div>
+
+      <div class="description-container">
+        <div class="description-block">
+          <div id="chatbot-en" class="desc-lang visible">
+            <p>The perfect Hebrew assistant — an integrated AI chatbot<br> that knows everything about verbs and grammar</p>
+            <p>You can save answers and view them later — <br>a convenient archive helps you quickly find what you need</p>
+          </div>
+          <div id="chatbot-ru" class="desc-lang">
+            <p>Идеальный помощник по ивриту — встроенный ИИ-чатбот,<br> который знает всё о глаголах и грамматике</p>
+            <p>Ответы можно сохранять и просматривать позже — удобный архив помогает быстро найти нужное</p>
+          </div>
+          <div id="chatbot-fr" class="desc-lang">
+            <p>Votre assistant parfait pour l’hébreu — un chatbot IA intégré <br>qui connaît tout sur les verbes et la grammaire</p>
+            <p>Les réponses peuvent être enregistrées et consultées plus tard — <br>un archivage pratique pour retrouver facilement ce qu’il vous faut</p>
+          </div>
+          <div id="chatbot-es" class="desc-lang">
+            <p>El asistente perfecto para el hebreo: un chatbot con IA <br>que lo sabe todo sobre verbos y gramática</p>
+            <p>Puedes guardar las respuestas y verlas más tarde — <br>un archivo útil que te ayuda a encontrar lo que necesitas</p>
+          </div>
+          <div id="chatbot-pt" class="desc-lang">
+            <p>O assistente ideal para hebraico — um chatbot com IA integrado <br>que sabe tudo sobre verbos e gramática</p>
+            <p>Você pode salvar respostas e visualizá-las depois —  <br>um arquivo prático que ajuda a encontrar rapidamente o que precisa</p>
+          </div>
+          <div id="chatbot-ar" class="desc-lang">
+            <p>المساعد المثالي للعبرية — روبوت دردشة ذكي مدمج يعرف كل شيء عن الأفعال والقواعد</p>
+            <p>يمكنك حفظ الإجابات ومراجعتها لاحقًا — أرشيف عملي يساعدك في العثور بسرعة على ما تحتاجه</p>
+          </div>
+          <div id="chatbot-am" class="desc-lang">
+            <p>የብሔራዊ ቋንቋው ብልጥ እገዳ — ሁሉንም ስለ ግሶችና ስርዓት የሚያውቅ የአይኤ ቻትቦት</p>
+            <p>መልሶችን መቀመጥና በኋላ ማየት ይቻላል — የተሻለ አርክብ እንዲሁም የሚፈልጉትን ፈጥነው ማግኘት ይረዳዎታል</p>
+          </div>
+          <div id="chatbot-he" class="desc-lang">
+            <p>העוזר המושלם ללימוד עברית — צ’אטבוט בינה מלאכותית שמבין הכול על פעלים ודקדוק</p>
+            <p>אפשר לשמור תשובות ולחזור אליהן מאוחר יותר — ארכיון נוח שמקל על מציאת המידע</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="screenshot-carousel">
+        <div class="carousel-track">
+          <div class="screenshot-slide">
+            <img src="Screenshot11.jpg" alt="Screenshot 1" />
+          </div>
+          <div class="screenshot-slide">
+            <img src="Screenshot12.jpg" alt="Screenshot 2" />
+          </div>
+          <div class="screenshot-slide">
+            <img src="Screenshot13.jpg" alt="Screenshot 1" />
+          </div>
+          <div class="screenshot-slide">
+            <img src="Screenshot14.jpg" alt="Screenshot 2" />
+          </div>
+          
+        </div>
+        <div class="carousel-dots">
+          <span class="dot active" onclick="goToSlide(0)"></span>
+          <span class="dot" onclick="goToSlide(1)"></span>
+          <span class="dot" onclick="goToSlide(2)"></span>
+          <span class="dot" onclick="goToSlide(3)"></span>
+          
+        </div>
+      </div>
+
+      <div class="responsive-image-wrapper">
+        <img src="tlv.jpg" alt="Tel Aviv" class="responsive-image" />
+      </div>
+      
+      <div class="description-container">
+        <div class="description-block">
+          
+            <div id="download-en" class="desc-lang visible">
+              Download now on Google Play!  <br>Coming soon to the App Store.
+            </div>
+          <!-- </div> -->
+          
+          
+          <div id="download-ru" class="desc-lang">
+              Скачайте сейчас на Google Play! <br>Скоро в App Store.
+            </div>
+          <!-- </div> -->
+          
+            <div id="download-fr" class="desc-lang">
+              Téléchargez dès maintenant sur Google Play! <br>Bientôt sur l'App Store.
+            </div>
+          <!-- </div> -->
+          
+            <div id="download-es" class="desc-lang">
+              ¡Descárgala ahora en Google Play! <br>Próximamente en App Store.
+            </div>
+          <!-- </div> -->
+
+          
+            <div id="download-pt" class="desc-lang">
+              Baixe agora no Google Play! <br>Em breve na App Store.
+            </div>
+          <!-- </div> -->
+          
+            <div id="download-ar" class="desc-lang">
+              حمّل التطبيق الآن على Google Play!<br> قريبًا على App Store.
+            </div>
+          <!-- </div> -->
+          
+            <div id="download-am" class="desc-lang">
+              አሁን በ Google Play ላይ አውርዱ!<br> በቅርብ ጊዜ በ App Store ላይ ይገኛል
+            </div>
+          <!-- </div> -->
+          
+            <div id="download-he" class="desc-lang">
+              הורידו עכשיו ב-Google Play!<br> בקרוב ב-App Store.
+            </div>
+          </div>
+        </div>
+     
+        <div class="store-buttons">
+            <a href="https://play.google.com/store/apps/details?id=com.yourapp" class="store-button">
+              <img src="google.png" alt="Google Play" />
+            </a>
+            <a href="https://apps.apple.com/app/id000000000" class="store-button">
+              <img src="pngwing.com.png" alt="App Store" />
+            </a>
+          </div>
+          
+
+          <footer class="footer">
+            <div class="footer-content">
+              <div id="footer-en" class="footer-lang desc-lang visible">
+                <button id="privacyButton">Privacy Policy</button>
+                <p class="license">This app uses the OpenAI ChatGPT API for Hebrew grammar explanations.</p>
+                <p class="copyright">© 2025 VERBIFY. All rights reserved.</p>
+              </div>
+              <div id="footer-ru" class="footer-lang desc-lang">
+                <button id="privacyButton">Политика конфиденциальности</button>
+                <p class="license">Это приложение использует API ChatGPT от OpenAI для объяснения грамматики иврита.</p>
+                <p class="copyright">© 2025 VERBIFY. Все права защищены.</p>
+              </div>
+              <div id="footer-fr" class="footer-lang desc-lang">
+                <button id="privacyButton">Politique de confidentialité</button>
+                <p class="license">Cette application utilise l’API ChatGPT d’OpenAI pour l’explication de la grammaire hébraïque.</p>
+                <p class="copyright">© 2025 VERBIFY. Tous droits réservés.</p>
+              </div>
+              <div id="footer-es" class="footer-lang desc-lang">
+                <button id="privacyButton">Política de privacidad</button>
+                <p class="license">Esta app utiliza la API ChatGPT de OpenAI para la gramática hebrea.</p>
+                <p class="copyright">© 2025 VERBIFY. Todos los derechos reservados.</p>
+              </div>
+              <div id="footer-pt" class="footer-lang desc-lang">
+                <button id="privacyButton">Política de privacidade</button>
+                <p class="license">Este app usa a API ChatGPT da OpenAI para explicações de gramática hebraica.</p>
+                <p class="copyright">© 2025 VERBIFY. Todos os direitos reservados.</p>
+              </div>
+              <div id="footer-ar" class="footer-lang desc-lang rtl">
+                <button id="privacyButton">سياسة الخصوصية</button>
+                <p class="license">يستخدم هذا التطبيق واجهة برمجة تطبيقات ChatGPT من OpenAI لشرح قواعد اللغة العبرية.</p>
+                <p class="copyright">© 2025 VERBIFY. جميع الحقوق محفوظة.</p>
+              </div>
+              <div id="footer-am" class="footer-lang desc-lang">
+                <button id="privacyButton">የግል መረጃ ፖሊሲ</button>
+                <p class="license">ይህ መተግበሪያ ለዕብራይስጥ ሰዋሰው መብረር ለማብራሪያ OpenAI እና ChatGPT API ይጠቀማል።</p>
+                <p class="copyright">© 2025 VERBIFY. መብቶቹ ሁሉ የተጠበቁ ናቸው።</p>
+              </div>
+              <div id="footer-he" class="footer-lang desc-lang rtl">
+                <button id="privacyButton">מדיניות פרטיות</button>
+                <p class="license">האפליקציה עושה שימוש ב־API של ChatGPT מבית OpenAI להסברים על דקדוק עברי.</p>
+                <p class="copyright">© 2025 VERBIFY. כל הזכויות שמורות.</p>
+              </div>
+            </div>
+          </footer>
+          
+          
+
+          <!-- Модальное окно -->
+<!-- Privacy Modal -->
+<div id="privacyModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+  
+      <div id="privacy-ru" class="privacy-text">
+        <h2>Политика конфиденциальности</h2>
+        <p><strong>Дата вступления в силу:</strong> 2025-05-08</p>
+        <h3>1. Сбор информации</h3>
+        <p><strong>Приложение VERBIFY может собирать:</p>
+            <p><em>Имя пользователя (если указано)</em></p>
+            <p><em>Язык интерфейса</em></p>
+            <p><em>Прогресс и статистику упражнений</em></p>
+            <p><em>Настройки уведомлений</em></p>
+        <p>Мы <strong>не собираем</strong> личные данные, такие как email, номер телефона, геолокация или платёжные данные.</p>
+        <h3>2. Использование данных</h3>
+        <p>Все данные используются исключительно для отображения прогресса, локальных напоминаний и пользовательских настроек.</p>
+        <h3>3. Передача данных</h3>
+        <p>Мы <strong>не передаём и не продаём</strong> ваши данные третьим лицам.</p>
+        <h3>4. Хранение и безопасность</h3>
+        <p>Все данные хранятся локально на вашем устройстве. Мы не используем удалённые серверы.</p>
+        <h3>5. Права пользователя</h3>
+        <p>Вы можете сбросить данные вручную в приложении или удалить его, чтобы удалить все связанные данные.</p>
+        <h3>6. Обновления</h3>
+        <p>В случае обновлений, информация будет размещена здесь. Последнее обновление: <strong>2025-05-08</strong>.</p>
+        <h3>7. Контакты</h3>
+        <p>Если у вас есть вопросы, напишите нам: <a href="mailto:verbify2025@gmail.com">verbify2025@gmail.com</a></p>
+      </div>
+  
+      <div id="privacy-en" class="privacy-text" style="display: none;">
+        <h2>Privacy Policy</h2>
+        <p><strong>Effective date:</strong> 2025-05-08</p>
+        <h3>1. Information Collection</h3>
+        <p><strong>The VERBIFY app may collect:</strong></p>
+        
+            <p><em>Username (if provided)</em></p>
+                <p><em>Interface language</em></p>
+                    <p><em>Exercise progress and statistics</em></p>
+                        <p><em>Notification settings</em></p>
+        
+        <p>We <strong>do not collect</strong> personal data such as email, phone number, geolocation, or payment information.</p>
+        <h3>2. Data Usage</h3>
+        <p>All data is used solely to display progress, local reminders, and user settings.</p>
+        <h3>3. Data Sharing</h3>
+        <p>We <strong>do not share or sell</strong> your data to third parties.</p>
+        <h3>4. Storage and Security</h3>
+        <p>All data is stored locally on your device. No remote servers are used.</p>
+        <h3>5. User Rights</h3>
+        <p>You may manually reset data in the app or delete it to remove all related data.</p>
+        <h3>6. Updates</h3>
+        <p>In case of updates, information will be posted here. Last update: <strong>2025-05-08</strong>.</p>
+        <h3>7. Contact</h3>
+        <p>If you have questions, contact us at: <a href="mailto:verbify2025@gmail.com">verbify2025@gmail.com</a></p>
+      </div>
+
+      <div id="privacy-fr" class="privacy-text" style="display: none;">
+        <h2>Politique de confidentialité</h2>
+        <p><strong>Date d’entrée en vigueur :</strong> 2025-05-08</p>
+        <h3>1. Collecte d’informations</h3>
+        <p><strong>L'application VERBIFY peut collecter :</strong></p>
+        <p><em>Nom d'utilisateur (si fourni)</em></p>
+        <p><em>Langue de l’interface</em></p>
+        <p><em>Progression et statistiques des exercices</em></p>
+        <p><em>Paramètres de notification</em></p>
+        <p>Nous <strong>ne collectons pas</strong> de données personnelles telles que l’email, le numéro de téléphone, la géolocalisation ou les informations de paiement.</p>
+        <h3>2. Utilisation des données</h3>
+        <p>Les données sont utilisées uniquement pour afficher les progrès, envoyer des rappels locaux et gérer les paramètres utilisateur.</p>
+        <h3>3. Partage des données</h3>
+        <p>Nous <strong>ne partageons ni ne vendons</strong> vos données à des tiers.</p>
+        <h3>4. Stockage et sécurité</h3>
+        <p>Toutes les données sont stockées localement sur votre appareil. Aucun serveur distant n’est utilisé.</p>
+        <h3>5. Droits de l’utilisateur</h3>
+        <p>Vous pouvez réinitialiser manuellement les données dans l’application ou la supprimer pour effacer toutes les données associées.</p>
+        <h3>6. Mises à jour</h3>
+        <p>En cas de mise à jour, les informations seront publiées ici. Dernière mise à jour : <strong>2025-05-08</strong>.</p>
+        <h3>7. Contact</h3>
+        <p>Si vous avez des questions, contactez-nous à : <a href="mailto:verbify2025@gmail.com">verbify2025@gmail.com</a></p>
+      </div>
+
+      <div id="privacy-es" class="privacy-text" style="display: none;">
+        <h2>Política de privacidad</h2>
+        <p><strong>Fecha de entrada en vigor:</strong> 2025-05-08</p>
+        <h3>1. Recopilación de información</h3>
+        <p><strong>La app VERBIFY puede recopilar:</strong></p>
+        <p><em>Nombre de usuario (si se proporciona)</em></p>
+        <p><em>Idioma de la interfaz</em></p>
+        <p><em>Progreso y estadísticas de ejercicios</em></p>
+        <p><em>Configuración de notificaciones</em></p>
+        <p>No <strong>recopilamos</strong> datos personales como correo electrónico, número de teléfono, geolocalización o información de pago.</p>
+        <h3>2. Uso de los datos</h3>
+        <p>Los datos se usan solo para mostrar el progreso, enviar recordatorios locales y guardar configuraciones del usuario.</p>
+        <h3>3. Compartir datos</h3>
+        <p>No <strong>compartimos ni vendemos</strong> sus datos a terceros.</p>
+        <h3>4. Almacenamiento y seguridad</h3>
+        <p>Todos los datos se almacenan localmente en su dispositivo. No se utilizan servidores remotos.</p>
+        <h3>5. Derechos del usuario</h3>
+        <p>Puede restablecer manualmente los datos en la aplicación o eliminarla para borrar todos los datos.</p>
+        <h3>6. Actualizaciones</h3>
+        <p>En caso de actualizaciones, se publicará la información aquí. Última actualización: <strong>2025-05-08</strong>.</p>
+        <h3>7. Contacto</h3>
+        <p>Si tiene preguntas, contáctenos: <a href="mailto:verbify2025@gmail.com">verbify2025@gmail.com</a></p>
+      </div>
+
+      <div id="privacy-pt" class="privacy-text" style="display: none;">
+        <h2>Política de Privacidade</h2>
+        <p><strong>Data de vigência:</strong> 2025-05-08</p>
+        <h3>1. Coleta de informações</h3>
+        <p><strong>O aplicativo VERBIFY pode coletar:</strong></p>
+        <p><em>Nome de usuário (se fornecido)</em></p>
+        <p><em>Idioma da interface</em></p>
+        <p><em>Progresso e estatísticas dos exercícios</em></p>
+        <p><em>Configurações de notificação</em></p>
+        <p>Não <strong>coletamos</strong> dados pessoais como email, número de telefone, localização ou informações de pagamento.</p>
+        <h3>2. Uso dos dados</h3>
+        <p>Todos os dados são usados apenas para exibir progresso, lembretes locais e configurações do usuário.</p>
+        <h3>3. Compartilhamento de dados</h3>
+        <p>Não <strong>compartilhamos nem vendemos</strong> seus dados a terceiros.</p>
+        <h3>4. Armazenamento e segurança</h3>
+        <p>Todos os dados são armazenados localmente no seu dispositivo. Não utilizamos servidores remotos.</p>
+        <h3>5. Direitos do usuário</h3>
+        <p>Você pode redefinir os dados manualmente no aplicativo ou excluí-lo para remover todos os dados.</p>
+        <h3>6. Atualizações</h3>
+        <p>Em caso de atualizações, as informações serão publicadas aqui. Última atualização: <strong>2025-05-08</strong>.</p>
+        <h3>7. Contato</h3>
+        <p>Se tiver dúvidas, entre em contato: <a href="mailto:verbify2025@gmail.com">verbify2025@gmail.com</a></p>
+      </div>
+      
+      <div id="privacy-ar" class="privacy-text rtl" style="display: none;">
+        <h2>سياسة الخصوصية</h2>
+        <p><strong>تاريخ السريان:</strong> 2025-05-08</p>
+        <h3>1. جمع المعلومات</h3>
+        <p><strong>قد يقوم تطبيق VERBIFY بجمع:</strong></p>
+        <p><em>اسم المستخدم (إذا تم إدخاله)</em></p>
+        <p><em>لغة الواجهة</em></p>
+        <p><em>تقدّم المستخدم وإحصائيات التمارين</em></p>
+        <p><em>إعدادات الإشعارات</em></p>
+        <p>نحن <strong>لا نجمع</strong> معلومات شخصية مثل البريد الإلكتروني أو رقم الهاتف أو الموقع الجغرافي أو بيانات الدفع.</p>
+        <h3>2. استخدام البيانات</h3>
+        <p>يتم استخدام جميع البيانات فقط لعرض التقدم، الإشعارات المحلية، والإعدادات الشخصية.</p>
+        <h3>3. مشاركة البيانات</h3>
+        <p>نحن <strong>لا نشارك ولا نبيع</strong> بياناتك لأي جهة خارجية.</p>
+        <h3>4. التخزين والأمان</h3>
+        <p>يتم حفظ جميع البيانات محلياً على جهازك. لا نستخدم خوادم بعيدة.</p>
+        <h3>5. حقوق المستخدم</h3>
+        <p>يمكنك إعادة تعيين البيانات يدوياً من التطبيق أو حذفه لإزالة جميع البيانات.</p>
+        <h3>6. التحديثات</h3>
+        <p>في حال وجود تحديثات، سيتم نشر المعلومات هنا. آخر تحديث: <strong>2025-05-08</strong>.</p>
+        <h3>7. التواصل</h3>
+        <p>للاستفسارات، راسلنا على: <a href="mailto:verbify2025@gmail.com">verbify2025@gmail.com</a></p>
+      </div>
+      
+      <div id="privacy-am" class="privacy-text" style="display: none;">
+        <h2>የግላዊነት ፖሊሲ</h2>
+        <p><strong>ተግባራዊ ቀን፡</strong> 2025-05-08</p>
+        <h3>1. መረጃ ማከማቻ</h3>
+        <p><strong>VERBIFY መተግበሪያ የሚከማቸው መረጃዎች:</strong></p>
+        <p><em>የተጠቃሚ ስም (ካስገባው)</em></p>
+        <p><em>የትንሳኤ ቋንቋ</em></p>
+        <p><em>የልምድ እድገት እና ስታቲስቲክስ</em></p>
+        <p><em>የአስታዋሽ ቅንብሮች</em></p>
+        <p>እኛ <strong>የግል መረጃዎችን</strong> (ኢሜይል፣ ስልክ፣ አካባቢ፣ የመክፈያ መረጃ) አንከማችም።</p>
+        <h3>2. የመረጃ አጠቃቀም</h3>
+        <p>መረጃዎቹ ብቻ ለልምድ ማሳያ፣ አስታዋሽ እና ቅንብር ይጠቀማሉ።</p>
+        <h3>3. የመረጃ ማጋራት</h3>
+        <p>እኛ መረጃዎችን <strong>አንጋራም፣ አንሸጥም</strong>።</p>
+        <h3>4. ቀመጥና ደህንነት</h3>
+        <p>መረጃዎቹ በመሣሪያዎ ላይ ብቻ ይቀመጣሉ። አርቲፊሻል አካባቢ አይጠቀምም።</p>
+        <h3>5. የተጠቃሚ መብቶች</h3>
+        <p>መረጃዎችን በመተግበሪያው ማጥፋት ወይም መስረዝ ይችላሉ።</p>
+        <h3>6. አዳዲስ እንዲሁም አሻሻዎች</h3>
+        <p>በማንኛውም አዳዲስ ላይ መረጃው እዚህ ይታያል። የመጨረሻ ዝመና፡ <strong>2025-05-08</strong></p>
+        <h3>7. እያንዳንዱ መልዕክት</h3>
+        <p>ለጥያቄዎች፡ <a href="mailto:verbify2025@gmail.com">verbify2025@gmail.com</a></p>
+      </div>
+      
+      <div id="privacy-he" class="privacy-text rtl" style="display: none;">
+        <h2>מדיניות פרטיות</h2>
+        <p><strong>תאריך התחולה:</strong> 2025-05-08</p>
+        <h3>1. איסוף מידע</h3>
+        <p><strong>האפליקציה VERBIFY עשויה לאסוף:</strong></p>
+        <p><em>שם משתמש (אם סופק)</em></p>
+        <p><em>שפת הממשק</em></p>
+        <p><em>התקדמות וסטטיסטיקות של תרגולים</em></p>
+        <p><em>הגדרות התראות</em></p>
+        <p>איננו <strong>אוספים</strong> מידע אישי כגון דוא"ל, מספר טלפון, מיקום גאוגרפי או פרטי תשלום.</p>
+        <h3>2. שימוש במידע</h3>
+        <p>כל המידע משמש רק להצגת התקדמות, תזכורות מקומיות והגדרות אישיות.</p>
+        <h3>3. שיתוף מידע</h3>
+        <p>איננו <strong>משתפים או מוכרים</strong> את המידע שלך לצדדים שלישיים.</p>
+        <h3>4. אחסון ואבטחה</h3>
+        <p>כל הנתונים נשמרים מקומית על המכשיר שלך. אין שימוש בשרתים חיצוניים.</p>
+        <h3>5. זכויות המשתמש</h3>
+        <p>ניתן לאפס את המידע באפליקציה או למחוק אותה כדי להסיר את כל הנתונים.</p>
+        <h3>6. עדכונים</h3>
+        <p>במקרה של עדכונים, המידע יפורסם כאן. עדכון אחרון: <strong>2025-05-08</strong>.</p>
+        <h3>7. יצירת קשר</h3>
+        <p>לשאלות: <a href="mailto:verbify2025@gmail.com">verbify2025@gmail.com</a></p>
+      </div>
+      
+  
+      <!-- Повторить для fr, es, pt, ar, am, he -->
+      <!-- Если нужно — я сгенерирую оставшиеся языки сейчас -->
+
+      <div class="modal-footer">
+        <button class="modal-close-btn" onclick="closePrivacyModal()">✖ Close</button>
+      </div>
+
+    </div>
+  </div>
+  
+
+  
+            
+      
+      
+      
+      
+      
+
+  <script>
+    const selector = document.getElementById('languageSelector');
+    const contents = document.querySelectorAll('.lang-content');
+    const highlightBlocks = document.querySelectorAll('.highlight-lang');
+    const featuresBlocks = document.querySelectorAll('.features-lang');
+  
+    selector.addEventListener('change', (e) => {
+      const lang = e.target.value;
+  
+      // Основные блоки
+      contents.forEach(div => div.classList.remove('visible'));
+      highlightBlocks.forEach(div => div.classList.remove('visible'));
+      featuresBlocks.forEach(div => div.classList.remove('visible'));
+  
+      const content = document.getElementById(lang);
+      const highlight = document.getElementById('hl-' + lang);
+      const features1 = document.getElementById('features-' + lang);
+      const features2 = document.getElementById('features2-' + lang);
+  
+      if (content) content.classList.add('visible');
+      if (highlight) highlight.classList.add('visible');
+      if (features1) features1.classList.add('visible');
+      if (features2) features2.classList.add('visible');
+  
+      // desc / levels / chatbot / download
+      document.querySelectorAll('.desc-lang').forEach(div => div.classList.remove('visible'));
+  
+      const desc = document.getElementById('desc-' + lang);
+      const levels = document.getElementById('levels-' + lang);
+      const chatbot = document.getElementById('chatbot-' + lang);
+      const download = document.getElementById('download-' + lang);
+      const footer = document.getElementById('footer-' + lang);
+      const featureText = document.getElementById('features-text-' + lang);
+  
+      if (desc) desc.classList.add('visible');
+      if (levels) levels.classList.add('visible');
+      if (chatbot) chatbot.classList.add('visible');
+      if (download) download.classList.add('visible');
+      if (footer) {
+        document.querySelectorAll('.footer-lang').forEach(div => div.classList.remove('visible'));
+        footer.classList.add('visible');
+      }
+  
+      document.querySelectorAll('.features-text-lang').forEach(div => div.classList.remove('visible'));
+      if (featureText) featureText.classList.add('visible');
+    });
+  
+    // Универсальная логика карусели
+    document.querySelectorAll('.screenshot-carousel').forEach((carousel) => {
+      const track = carousel.querySelector('.carousel-track');
+      const dots = carousel.querySelectorAll('.dot');
+      const slides = carousel.querySelectorAll('.screenshot-slide');
+  
+      function goToSlide(index) {
+        const slideWidth = slides[0].offsetWidth;
+        track.scrollTo({ left: slideWidth * index, behavior: 'smooth' });
+        dots.forEach(dot => dot.classList.remove('active'));
+        if (dots[index]) dots[index].classList.add('active');
+      }
+  
+      dots.forEach((dot, i) => {
+        dot.addEventListener('click', () => goToSlide(i));
+      });
+  
+      if (track) {
+        track.addEventListener('scroll', () => {
+          const index = Math.round(track.scrollLeft / slides[0].offsetWidth);
+          dots.forEach(dot => dot.classList.remove('active'));
+          if (dots[index]) dots[index].classList.add('active');
+        });
+      }
+  
+      goToSlide(0);
+    });
+  
+    // Модальное окно политики конфиденциальности
+    const modal = document.getElementById("privacyModal");
+    const span = modal.querySelector(".close");
+  
+    function openPrivacyModal() {
+      const lang = selector.value || 'en';
+      document.querySelectorAll(".privacy-text").forEach(div => {
+        div.style.display = "none";
+      });
+      const current = document.getElementById("privacy-" + lang);
+      if (current) current.style.display = "block";
+      modal.style.display = "block";
+    }
+  
+    // Назначить обработчик кнопкам футера
+    document.querySelectorAll('.footer-lang button').forEach(button => {
+      button.addEventListener('click', openPrivacyModal);
+    });
+  
+    span.onclick = function () {
+      modal.style.display = "none";
+    };
+  
+    window.onclick = function (event) {
+      if (event.target === modal) {
+        modal.style.display = "none";
+      }
+    };
+  
+    // Инициализация при загрузке
+    window.addEventListener('DOMContentLoaded', () => {
+      selector.dispatchEvent(new Event('change'));
+    });
+
+    function closePrivacyModal() {
+  document.getElementById("privacyModal").style.display = "none";
+}
+
+  </script>
+  
+      
+      
+  
+  
+  
+  
+  
+  
+  
+  
+</body>
+</html>
