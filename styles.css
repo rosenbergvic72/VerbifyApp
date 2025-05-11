@@ -454,10 +454,10 @@
     color: #004aad;
   }
   
-  .modal-content p,
-  .modal-content li {
-    font-size: 16px;
-    line-height: 1.6;
+  .modal-content p
+  {
+    font-size: 15px;
+    line-height: 1.4;
     color: #222;
   }
   
@@ -468,7 +468,7 @@
   
   .modal-content strong {
     color: #000;
-    font-weight: bold;
+    /* font-weight: bold; */
   }
 
   .modal-footer {
