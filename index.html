@@ -13,6 +13,16 @@
   max-width: 800px;
   margin: auto;
 }
+
+/* 🔹 Новый стиль для верхнего блока Download */
+  .download-callout .desc-lang {
+    font-size: 1.4rem;      /* крупнее текста */
+    line-height: 1.5;
+    color: #bd462a;         /* более насыщённый синий */
+    font-weight: 700;
+    text-align: center;
+  }
+
     .btn { display: inline-block; margin-top: 20px; padding: 15px 25px; background-color: #007BFF; color: white; text-decoration: none; font-size: 18px; border-radius: 5px; }
     select { margin: 20px; font-size: 16px; padding: 5px; }
     .lang-content { display: none; text-align: left; direction: ltr; }
@@ -105,51 +115,35 @@
         <div id="hl-he" class="highlight-lang">אפליקציה חינוכית ללימוד מערכת הפעלים בעברית</div>
       </div>
 
-       <div class="description-container">
-        <div class="description-block">
-          
-            <div id="download-en" class="desc-lang visible">
-              Download now on Google Play!  <br>Coming soon to the App Store.
-            </div>
-          <!-- </div> -->
-          
-          
-          <div id="download-ru" class="desc-lang">
-              Скачайте сейчас на Google Play! <br>Скоро в App Store.
-            </div>
-          <!-- </div> -->
-          
-            <div id="download-fr" class="desc-lang">
-              Téléchargez dès maintenant sur Google Play! <br>Bientôt sur l'App Store.
-            </div>
-          <!-- </div> -->
-          
-            <div id="download-es" class="desc-lang">
-              ¡Descárgala ahora en Google Play! <br>Próximamente en App Store.
-            </div>
-          <!-- </div> -->
+       <div class="description-container download-callout">
+  <div class="description-block">
+    <div id="download-en" class="desc-lang visible">
+      Download now on Google Play!  <br>Coming soon to the App Store.
+    </div>
+    <div id="download-ru" class="desc-lang">
+      Скачайте сейчас на Google Play! <br>Скоро в App Store.
+    </div>
+    <div id="download-fr" class="desc-lang">
+      Téléchargez dès maintenant sur Google Play! <br>Bientôt sur l'App Store.
+    </div>
+    <div id="download-es" class="desc-lang">
+      ¡Descárgala ahora en Google Play! <br>Próximamente en App Store.
+    </div>
+    <div id="download-pt" class="desc-lang">
+      Baixe agora no Google Play! <br>Em breve na App Store.
+    </div>
+    <div id="download-ar" class="desc-lang">
+      حمّل التطبيق الآن على Google Play!<br> قريبًا على App Store.
+    </div>
+    <div id="download-am" class="desc-lang">
+      አሁን በ Google Play ላይ አውርዱ!<br> በቅርብ ጊዜ በ App Store ላይ ይገኛል
+    </div>
+    <div id="download-he" class="desc-lang">
+      הורידו עכשיו ב-Google Play!<br> בקרוב ב-App Store.
+    </div>
+  </div>
+</div>
 
-          
-            <div id="download-pt" class="desc-lang">
-              Baixe agora no Google Play! <br>Em breve na App Store.
-            </div>
-          <!-- </div> -->
-          
-            <div id="download-ar" class="desc-lang">
-              حمّل التطبيق الآن على Google Play!<br> قريبًا على App Store.
-            </div>
-          <!-- </div> -->
-          
-            <div id="download-am" class="desc-lang">
-              አሁን በ Google Play ላይ አውርዱ!<br> በቅርብ ጊዜ በ App Store ላይ ይገኛል
-            </div>
-          <!-- </div> -->
-          
-            <div id="download-he" class="desc-lang">
-              הורידו עכשיו ב-Google Play!<br> בקרוב ב-App Store.
-            </div>
-          </div>
-        </div>
      
         <div class="store-buttons">
             <a href="https://play.google.com/apps/internaltest/4701343879262850006" class="store-button">
