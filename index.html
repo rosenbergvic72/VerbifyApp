@@ -17,7 +17,7 @@
 
     /* 🔹 Новый стиль для верхнего блока Download */
     .download-callout .desc-lang {
-      font-size: 1.3rem;      /* крупнее текста */
+      font-size: 1.4rem;      /* крупнее текста */
       line-height: 1.5;
       color: #bd462a;         /* более насыщённый синий */
       font-weight: 700;
@@ -82,6 +82,44 @@
       box-shadow: 0 1px 2px rgba(0,0,0,0.8);
       cursor: pointer;
     }
+
+    /* Блок с кнопками магазинов */
+.store-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin: 25px 0;
+  flex-wrap: wrap;
+}
+
+/* Таблетка почти под размер иконки */
+/* .store-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #f4f4f4;
+  padding: 6px 10px;
+  border-radius: 999px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.12);
+  width: auto;
+  height: auto;
+} */
+
+/* 👉 тут задаём РЕАЛЬНЫЙ размер иконок */
+.store-button img {
+  display: block;
+  height: 80px;   /* сделай 60–70px, если хочешь крупнее */
+  width: auto;
+  max-width: none; /* чтобы другие стили не сжимали */
+}
+
+/* чуть поменьше на очень узких экранах */
+@media (max-width: 480px) {
+  .store-button img {
+    height: 52px;
+  }
+}
+
   </style>
 
   <div class="image-wrapper">
@@ -126,24 +164,28 @@
       <div id="download-pt" class="desc-lang">
         Baixe agora no Google Play! <br>Em breve na App Store.
       </div>
-      <div id="download-ar" class="desc-lang">
-        حمّل التطبيق الآن على Google Play!<br> قريبًا على App Store.
-      </div>
+      <div id="download-ar" class="desc-lang rtl">
+  حمّل التطبيق الآن على <span dir="ltr">Google Play</span>!<br>
+  قريبًا على <span dir="ltr">App Store</span>.
+</div>
+
       <div id="download-am" class="desc-lang">
         አሁን በ Google Play ላይ አውርዱ!<br> በቅርብ ጊዜ በ App Store ላይ ይገኛል
       </div>
-      <div id="download-he" class="desc-lang">
-        הורידו עכשיו ב-Google Play!<br> בקרוב ב-App Store.
-      </div>
+     <div id="download-he" class="desc-lang rtl">
+  הורידו עכשיו ב-<span dir="ltr">Google Play</span>!<br>
+  בקרוב ב-<span dir="ltr">App Store</span>.
+</div>
+
     </div>
   </div>
 
   <div class="store-buttons">
     <a href="https://play.google.com/apps/internaltest/4701343879262850006" class="store-button">
-      <img src="google.png" alt="Google Play" />
+      <img src="gp.png" alt="Google Play" />
     </a>
     <a href="https://apps.apple.com/app/id000000000" class="store-button">
-      <img src="pngwing.com.png" alt="App Store" />
+      <img src="as.png" alt="App Store" />
     </a>
   </div>
 
@@ -881,4 +923,3 @@
   </script>
 </body>
 </html>
-
