@@ -355,42 +355,42 @@
     <div class="description-block">
       <div id="levels-en" class="desc-lang visible">
         <p>Main exercises — conjugation trainers for over 100 verbs</p>
-        <p>For beginners: exercises to memorize 300 common verbs</p>
+        <p>For beginners: exercises to memorize 350 common verbs</p>
         <p>For intermediate: trainers for recognizing binyanim and imperatives</p>
       </div>
       <div id="levels-ru" class="desc-lang">
         <p>Основные упражнения — тренажёры спряжения более 100 глаголов</p>
-        <p>Для начинающих: упражнения на запоминание 300 часто используемых глаголов</p>
+        <p>Для начинающих: упражнения на запоминание 350 часто используемых глаголов</p>
         <p>Для продолжающих: тренажёры распознавания биньянов и повелительных форм</p>
       </div>
       <div id="levels-fr" class="desc-lang">
         <p>Exercices principaux — conjugaison de plus de 100 verbes</p>
-        <p>Pour débutants : mémorisation de 300 verbes courants</p>
+        <p>Pour débutants : mémorisation de 350 verbes courants</p>
         <p>Pour intermédiaires : entraînement aux binyanim et à l’impératif</p>
       </div>
       <div id="levels-es" class="desc-lang">
         <p>Ejercicios principales — conjugación de más de 100 verbos</p>
-        <p>Para principiantes: ejercicios para memorizar 300 verbos comunes</p>
+        <p>Para principiantes: ejercicios para memorizar 350 verbos comunes</p>
         <p>Para intermedios: práctica de binyanim y formas imperativas</p>
       </div>
       <div id="levels-pt" class="desc-lang">
         <p>Exercícios principais — conjugação de mais de 100 verbos</p>
-        <p>Para iniciantes: memorização de 300 verbos comuns</p>
+        <p>Para iniciantes: memorização de 350 verbos comuns</p>
         <p>Para intermediários: treino de binyanim e formas imperativas</p>
       </div>
       <div id="levels-ar" class="desc-lang">
         <p>التمارين الرئيسية — تصريف أكثر من 100 فعل</p>
-        <p>للمبتدئين: تمارين لحفظ 300 فعل شائع</p>
+        <p>للمبتدئين: تمارين لحفظ 350 فعل شائع</p>
         <p>للمتوسطين: تدريب على البنيان وصيغة الأمر</p>
       </div>
       <div id="levels-am" class="desc-lang">
         <p>ዋና ልምዶች — ከ100 በላይ ግሶችን ለመሰረዝ</p>
-        <p>ለጀማሪዎች፡ 300 የተለመዱ ግሶችን ማስታወሻ</p>
+        <p>ለጀማሪዎች፡ 350 የተለመዱ ግሶችን ማስታወሻ</p>
         <p>ለመካከለኛዎች፡ ቢንያንን እና ትእዛዛትን ማወቅ</p>
       </div>
       <div id="levels-he" class="desc-lang">
         <p>תרגולים עיקריים — תרגול הטיית יותר מ־100 פעלים</p>
-        <p>למתחילים: תרגילים לזכירת 300 פעלים שכיחים</p>
+        <p>למתחילים: תרגילים לזכירת 350 פעלים שכיחים</p>
         <p>למתקדמים: תרגול זיהוי בניינים וציווי</p>
       </div>
     </div>
@@ -499,7 +499,7 @@
     <img src="tlv.jpg" alt="Tel Aviv" class="responsive-image" />
   </div>
 
-  <div class="description-container">
+  <!-- <div class="description-container">
     <div class="description-block">
       <div id="download-en" class="desc-lang visible">
         Download now on Google Play!  <br>Coming soon to the App Store.
@@ -526,6 +526,44 @@
         הורידו עכשיו ב-Google Play!<br> בקרוב ב-App Store.
       </div>
     </div>
+  </div> -->
+
+  <div class="description-container download-callout">
+  <!-- <div class="description-block"> -->
+    <div id="download-en" class="desc-lang visible">
+      Download now!
+    </div>
+    <div id="download-ru" class="desc-lang">
+      Скачайте сейчас!
+    </div>
+    <div id="download-fr" class="desc-lang">
+      Téléchargez maintenant !
+    </div>
+    <div id="download-es" class="desc-lang">
+      ¡Descárgala ahora!
+    </div>
+    <div id="download-pt" class="desc-lang">
+      Baixe agora!
+    </div>
+    <div id="download-ar" class="desc-lang rtl">
+      حمّل التطبيق الآن!
+    </div>
+    <div id="download-am" class="desc-lang">
+      አሁን ያውርዱ!
+    </div>
+    <div id="download-he" class="desc-lang rtl">
+      הורידו עכשיו!
+    </div>
+  <!-- </div> -->
+</div>
+
+  <div class="store-buttons">
+    <a href="https://play.google.com/store/apps/details?id=com.rosenbergvictor72.pealim2" class="store-button">
+      <img src="gp.png" alt="Google Play" />
+    </a>
+    <a href="https://apps.apple.com/il/app/verbify-hebrew-verb-trainer/id6759317787" class="store-button">
+      <img src="as.png" alt="App Store" />
+    </a>
   </div>
 
   <footer class="footer">
@@ -575,106 +613,96 @@
 
 
 
-  <script>
-    const selector = document.getElementById('languageSelector');
-    const contents = document.querySelectorAll('.lang-content');
-    const highlightBlocks = document.querySelectorAll('.highlight-lang');
-    const featuresBlocks = document.querySelectorAll('.features-lang');
+<script>
+  const selector = document.getElementById('languageSelector');
 
-    // Определяем язык браузера и сопоставляем с языками сайта
-    function getPreferredLang() {
-      const browserLangs = (navigator.languages && navigator.languages.length)
-        ? navigator.languages
-        : [navigator.language || navigator.userLanguage || 'en'];
+  function getPreferredLang() {
+    const browserLangs = (navigator.languages && navigator.languages.length)
+      ? navigator.languages
+      : [navigator.language || navigator.userLanguage || 'en'];
 
-      for (let lang of browserLangs) {
-        if (!lang) continue;
-        lang = lang.toLowerCase();
+    for (let lang of browserLangs) {
+      if (!lang) continue;
+      lang = lang.toLowerCase();
 
-        if (lang.startsWith('ru')) return 'ru';
-        if (lang.startsWith('fr')) return 'fr';
-        if (lang.startsWith('es')) return 'es';
-        if (lang.startsWith('pt')) return 'pt';
-        if (lang.startsWith('ar')) return 'ar';
-        if (lang.startsWith('am')) return 'am';
-        if (lang.startsWith('he') || lang.startsWith('iw')) return 'he'; // he / старый iw
-        if (lang.startsWith('en')) return 'en';
-      }
-
-      // если ничего не подошло — английский
-      return 'en';
+      if (lang.startsWith('ru')) return 'ru';
+      if (lang.startsWith('fr')) return 'fr';
+      if (lang.startsWith('es')) return 'es';
+      if (lang.startsWith('pt')) return 'pt';
+      if (lang.startsWith('ar')) return 'ar';
+      if (lang.startsWith('am')) return 'am';
+      if (lang.startsWith('he') || lang.startsWith('iw')) return 'he';
+      if (lang.startsWith('en')) return 'en';
     }
 
-    selector.addEventListener('change', (e) => {
-      const lang = e.target.value;
+    return 'en';
+  }
 
-      // Основные блоки
-      contents.forEach(div => div.classList.remove('visible'));
-      highlightBlocks.forEach(div => div.classList.remove('visible'));
-      featuresBlocks.forEach(div => div.classList.remove('visible'));
+  function setLanguage(lang) {
+    document.querySelectorAll(
+      '.highlight-lang, .desc-lang, .features-text-lang, .footer-lang'
+    ).forEach(el => el.classList.remove('visible'));
 
-      const content = document.getElementById(lang);
-      const highlight = document.getElementById('hl-' + lang);
-      const features1 = document.getElementById('features-' + lang);
-      const features2 = document.getElementById('features2-' + lang);
+    const ids = [
+      'hl-' + lang,
+      'desc-' + lang,
+      'levels-' + lang,
+      'chatbot-' + lang,
+      'features-text-' + lang,
+      'footer-' + lang
+    ];
 
-      if (content) content.classList.add('visible');
-      if (highlight) highlight.classList.add('visible');
-      if (features1) features1.classList.add('visible');
-      if (features2) features2.classList.add('visible');
-
-      // desc / levels / chatbot / download / footer / features-text
-      document.querySelectorAll('.desc-lang').forEach(div => div.classList.remove('visible'));
-
-      const desc = document.getElementById('desc-' + lang);
-      const levels = document.getElementById('levels-' + lang);
-      const chatbot = document.getElementById('chatbot-' + lang);
-      const download = document.getElementById('download-' + lang);
-      const footer = document.getElementById('footer-' + lang);
-      const featureText = document.getElementById('features-text-' + lang);
-
-      if (desc) desc.classList.add('visible');
-      if (levels) levels.classList.add('visible');
-      if (chatbot) chatbot.classList.add('visible');
-      if (download) download.classList.add('visible');
-      if (footer) {
-        document.querySelectorAll('.footer-lang').forEach(div => div.classList.remove('visible'));
-        footer.classList.add('visible');
-      }
-
-      document.querySelectorAll('.features-text-lang').forEach(div => div.classList.remove('visible'));
-      if (featureText) featureText.classList.add('visible');
+    ids.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.classList.add('visible');
     });
 
-    // Универсальная логика карусели
-    document.querySelectorAll('.screenshot-carousel').forEach((carousel) => {
-      const track = carousel.querySelector('.carousel-track');
-      const dots = carousel.querySelectorAll('.dot');
-      const slides = carousel.querySelectorAll('.screenshot-slide');
+    document.querySelectorAll('[id="download-' + lang + '"]').forEach(el => {
+      el.classList.add('visible');
+    });
 
-      function goToSlide(index) {
-        const slideWidth = slides[0].offsetWidth;
-        track.scrollTo({ left: slideWidth * index, behavior: 'smooth' });
+    if (selector) selector.value = lang;
+
+    document.documentElement.lang = lang;
+    document.documentElement.dir = (lang === 'ar' || lang === 'he') ? 'rtl' : 'ltr';
+  }
+
+  const initialLang = getPreferredLang();
+  setLanguage(initialLang);
+
+  selector.addEventListener('change', (e) => {
+    setLanguage(e.target.value);
+  });
+
+  document.querySelectorAll('.screenshot-carousel').forEach((carousel) => {
+    const track = carousel.querySelector('.carousel-track');
+    const dots = carousel.querySelectorAll('.dot');
+    const slides = carousel.querySelectorAll('.screenshot-slide');
+
+    function goToSlide(index) {
+      if (!track || !slides.length) return;
+
+      const slideWidth = slides[0].offsetWidth;
+      track.scrollTo({ left: slideWidth * index, behavior: 'smooth' });
+
+      dots.forEach(dot => dot.classList.remove('active'));
+      if (dots[index]) dots[index].classList.add('active');
+    }
+
+    dots.forEach((dot, i) => {
+      dot.addEventListener('click', () => goToSlide(i));
+    });
+
+    if (track && slides.length) {
+      track.addEventListener('scroll', () => {
+        const index = Math.round(track.scrollLeft / slides[0].offsetWidth);
         dots.forEach(dot => dot.classList.remove('active'));
         if (dots[index]) dots[index].classList.add('active');
-      }
-
-      dots.forEach((dot, i) => {
-        dot.addEventListener('click', () => goToSlide(i));
       });
+    }
 
-      if (track) {
-        track.addEventListener('scroll', () => {
-          const index = Math.round(track.scrollLeft / slides[0].offsetWidth);
-          dots.forEach(dot => dot.classList.remove('active'));
-          if (dots[index]) dots[index].classList.add('active');
-        });
-      }
-
-      goToSlide(0);
-    });
-
-
-  </script>
+    goToSlide(0);
+  });
+</script>
 </body>
 </html>
