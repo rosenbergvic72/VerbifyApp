@@ -30,6 +30,15 @@
     .rtl { direction: rtl; text-align: right; }
     .visible { display: block; }
   </style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NEBYQXZ5FS"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-NEBYQXZ5FS');
+</script>
 </head>
 <body>
   <header>
@@ -176,14 +185,25 @@
   <!-- </div> -->
 </div>
 
-  <div class="store-buttons">
-    <a href="https://play.google.com/store/apps/details?id=com.rosenbergvictor72.pealim2" class="store-button">
-      <img src="gp.png" alt="Google Play" />
-    </a>
-    <a href="https://apps.apple.com/il/app/verbify-hebrew-verb-trainer/id6759317787" class="store-button">
-      <img src="as.png" alt="App Store" />
-    </a>
-  </div>
+<div class="store-buttons">
+  <a href="https://play.google.com/store/apps/details?id=com.rosenbergvictor72.pealim2"
+     class="store-button"
+     onclick="gtag('event', 'click_googleplay', {
+       event_category: 'engagement',
+       event_label: 'google_play_button'
+     })">
+    <img src="gp.png" alt="Google Play" />
+  </a>
+
+  <a href="https://apps.apple.com/il/app/verbify-hebrew-verb-trainer/id6759317787"
+     class="store-button"
+     onclick="gtag('event', 'click_appstore', {
+       event_category: 'engagement',
+       event_label: 'app_store_button'
+     })">
+    <img src="as.png" alt="App Store" />
+  </a>
+</div>
 
   <div class="description-container">
     <div class="description-block">
@@ -557,14 +577,25 @@
   <!-- </div> -->
 </div>
 
-  <div class="store-buttons">
-    <a href="https://play.google.com/store/apps/details?id=com.rosenbergvictor72.pealim2" class="store-button">
-      <img src="gp.png" alt="Google Play" />
-    </a>
-    <a href="https://apps.apple.com/il/app/verbify-hebrew-verb-trainer/id6759317787" class="store-button">
-      <img src="as.png" alt="App Store" />
-    </a>
-  </div>
+<div class="store-buttons">
+  <a href="https://play.google.com/store/apps/details?id=com.rosenbergvictor72.pealim2"
+     class="store-button"
+     onclick="gtag('event', 'click_googleplay', {
+       event_category: 'engagement',
+       event_label: 'google_play_button'
+     })">
+    <img src="gp.png" alt="Google Play" />
+  </a>
+
+  <a href="https://apps.apple.com/il/app/verbify-hebrew-verb-trainer/id6759317787"
+     class="store-button"
+     onclick="gtag('event', 'click_appstore', {
+       event_category: 'engagement',
+       event_label: 'app_store_button'
+     })">
+    <img src="as.png" alt="App Store" />
+  </a>
+</div>
 
   <footer class="footer">
     <div class="footer-content">
