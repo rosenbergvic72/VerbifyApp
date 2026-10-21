@@ -6,143 +6,11 @@
   <meta name="google" content="notranslate" />
   <title>Privacy Policy • VERBIFY</title>
 
-  <style>
-    body {
-      font-family: sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #eaf5ff;
-      color: #333;
-    }
+  <link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="privacy.css">
+<script>try{const t=localStorage.getItem('verbify_theme');document.documentElement.dataset.theme=t==='dark'||t!=='light'&&matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}catch{}</script></head>
 
-    header {
-      background: #bbd3fa;
-      padding: 10px 12px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    header img {
-      height: 44px;
-      width: auto;
-    }
-
-    header .title {
-      display: flex;
-      flex-direction: column;
-      line-height: 1.2;
-    }
-
-    header .title h1 {
-      margin: 0;
-      font-size: 18px;
-      color: #262d3a;
-    }
-
-    header .title p {
-      margin: 0;
-      font-size: 13px;
-      color: #333;
-      opacity: 0.9;
-    }
-
-    .topbar {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 12px 16px 0;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .back-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      text-decoration: none;
-      color: #0b3d91;
-      font-weight: 700;
-      background: rgba(255,255,255,0.65);
-      border: 1px solid rgba(0,0,0,0.08);
-      padding: 10px 12px;
-      border-radius: 10px;
-    }
-
-    .lang-select {
-      padding: 10px 12px;
-      font-size: 15px;
-      font-weight: 700;
-      border: 1px solid rgba(0,0,0,0.18);
-      border-radius: 10px;
-      background: #dee9f8;
-      cursor: pointer;
-    }
-
-    .container {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 12px 16px 40px;
-    }
-
-    .card {
-      background: rgba(255,255,255,0.85);
-      border: 1px solid rgba(0,0,0,0.08);
-      border-radius: 14px;
-      padding: 16px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    }
-
-    .privacy-text { display: none; }
-    .privacy-text.visible { display: block; }
-
-    .privacy-text h2 { margin-top: 0; }
-    .privacy-text h3 { margin-bottom: 6px; margin-top: 18px; }
-
-    .deletion-box {
-      margin-top: 22px;
-      padding: 14px 16px;
-      background: rgba(187, 211, 250, 0.22);
-      border: 1px solid rgba(11, 61, 145, 0.18);
-      border-radius: 12px;
-    }
-
-    .deletion-box h3 {
-      margin-top: 0;
-    }
-
-    .deletion-box ol,
-    .deletion-box ul {
-      padding-left: 22px;
-      margin-top: 8px;
-      margin-bottom: 10px;
-    }
-
-    .rtl .deletion-box ol,
-    .rtl .deletion-box ul {
-      padding-left: 0;
-      padding-right: 22px;
-    }
-
-    .rtl { direction: rtl; text-align: right; }
-    a { color: #0b3d91; }
-  </style>
-</head>
-
-<body>
-  <header>
-    <img src="VERBIFY.png" alt="VERBIFY Logo" />
-    <div class="title">
-      <h1>VERBIFY</h1>
-      <p>Privacy Policy</p>
-    </div>
-  </header>
-
-  <div class="topbar">
-    <a class="back-link" href="index.html">← Back</a>
-
-    <select id="lang" class="lang-select" aria-label="Language">
+<body class="privacy-page">
+<header><div class="wrap nav"><a class="brand" id="privacy-home" href="index.html"><img src="VERBIFY.png" alt="Verbify"></a><div class="controls"><button id="privacy-theme" class="icon-button" type="button"><span aria-hidden="true">☾</span></button><select id="lang" class="lang-select" aria-label="Language">
       <option value="en">English</option>
       <option value="ru">Русский</option>
       <option value="fr">Français</option>
@@ -151,10 +19,7 @@
       <option value="ar">العربية</option>
       <option value="am">አማርኛ</option>
       <option value="he">עברית</option>
-    </select>
-  </div>
-
-  <div class="container">
+    </select></div></div></header><div class="privacy-top"><a class="back-link" href="index.html">← Back</a></div>  <div class="container">
     <div class="card">
 
       <!-- RU -->
@@ -625,6 +490,8 @@
   </div>
 
   <script>
+function updatePrivacyTheme(){const dark=document.documentElement.dataset.theme==='dark';const b=document.getElementById('privacy-theme');b.setAttribute('aria-pressed',String(dark));b.setAttribute('aria-label',({en:['Dark theme','Light theme'],ru:['Тёмная тема','Светлая тема'],fr:['Thème sombre','Thème clair'],es:['Tema oscuro','Tema claro'],pt:['Tema escuro','Tema claro'],ar:['الوضع الداكن','الوضع الفاتح'],am:['ጨለማ ገጽታ','ብርሃን ገጽታ'],he:['ערכת נושא כהה','ערכת נושא בהירה']})[document.documentElement.lang||'en'][dark?1:0]);b.querySelector('span').textContent=dark?'☀':'☾'}
+    document.getElementById('privacy-theme').addEventListener('click',()=>{const t=document.documentElement.dataset.theme==='dark'?'light':'dark';document.documentElement.dataset.theme=t;try{localStorage.setItem('verbify_theme',t)}catch{}updatePrivacyTheme()});
     const selector = document.getElementById('lang');
 
     function getPreferredLang() {
@@ -652,6 +519,11 @@
       const current = document.getElementById('privacy-' + lang) || document.getElementById('privacy-en');
       if (current) current.classList.add('visible');
       selector.value = lang;
+      document.documentElement.lang=lang;document.documentElement.dir=['ar','he'].includes(lang)?'rtl':'ltr';
+      document.querySelector('.back-link').textContent=({en:'← Home',ru:'← На главную',fr:'← Accueil',es:'← Inicio',pt:'← Início',ar:'الرئيسية →',am:'← መነሻ',he:'עמוד הבית →'})[lang];
+      document.querySelectorAll('.back-link,#privacy-home').forEach(a=>a.href='index.html?lang='+lang);
+      try{localStorage.setItem('verbify_language',lang)}catch{}
+      updatePrivacyTheme();
     }
 
     function getLangFromQuery() {
@@ -672,7 +544,7 @@
 
     window.addEventListener('DOMContentLoaded', () => {
       const fromQuery = getLangFromQuery();
-      const initial = fromQuery || getPreferredLang();
+      let saved;try{saved=localStorage.getItem('verbify_language')}catch{};const initial = fromQuery || (['en','ru','fr','es','pt','ar','am','he'].includes(saved)?saved:null) || getPreferredLang();
       applyLang(initial);
     });
   </script>
