@@ -1,7 +1,7 @@
 // Scoped layout keeps both matching columns aligned before and after answers.
 const matchLayout=document.createElement('style');matchLayout.textContent=`
 #matching .match-column{grid-auto-rows:128px}
-#matching .match-card{height:128px;min-height:128px;max-height:128px;box-sizing:border-box;padding:12px 10px;overflow:hidden}
+#matching .match-card{height:88px;min-height:88px;max-height:128px;box-sizing:border-box;padding:12px 10px;overflow:hidden}
 #matching .match-card span{max-width:100%;overflow-wrap:break-word;flex-shrink:0}
 #matching .match-card small{flex-shrink:0}
 #matching .match-card.matched span::after{content:none}
